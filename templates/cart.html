@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="./signup">회원가입</a> | <a href="./login">로그인</a>
+        </div>
+        <div class="gnbw">
+            <h1 class="logo">
+                <a href="./main" target="self">
+                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">    
+                </a>
+            </h1>
+    
+        </div>
+        <h1>장바구니 내용</h1>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="./product">상품 조회</a></li>
+            <li><a href="./promotion_product">행사상품 조회</a></li>
+            <li><a href="./save_promotion">행사상품 보관</a></li>
+            <li><a href="./cart">장바구니</a></li>
+            <li><a href="./mypage">마이페이지</a></li>
+        </ul>
+    </nav>
+
+    
+    <table>
+        <thead>
+            <tr>
+                <th>상품명</th>
+                <th>수량</th>
+                <th>가격</th>
+                <th>구입/삭제</th>
+                    
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>{{ student[2] }}</td>
+                
+                <td>
+                    <button class="buy-item">구입</button>
+                    <button class="remove-item">삭제</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <p>편의점 웹 서비스 | &copy; 2024</p>
+    </footer>
+
+
+    <script>
+        // 모든 학생 데이터를 로드 후 작업
+        document.addEventListener('DOMContentLoaded', () => {
+            // 학생 데이터에서 반복된 각 줄 처리
+            const rows = document.querySelectorAll('tbody tr');
+    
+            rows.forEach(row => {
+                const inputField = row.querySelector('.input-number'); // 현재 줄의 수량 입력 필드
+                const resultCell = row.querySelector('.result-cell'); // 현재 줄의 결과 셀
+                const studentValue = parseInt(row.children[3].textContent); // 학생 데이터 (student[2])
+    
+                // 입력 값 변경 시 동적 계산
+                inputField.addEventListener('input', () => {
+                    const inputValue = parseInt(inputField.value) || 1; // 유효하지 않은 경우 기본값 1
+                    const result = studentValue * inputValue; // 계산
+                    resultCell.textContent = `${studentValue} * ${inputValue} = ${result}`; // 결과 표시
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+
