@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 정보</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>상품 정보</h1>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <td>{{ student[0] }}</td>
+        </tr>
+        <tr>
+            <th>이름</th>
+            <td>{{ student[1] }}</td>
+        </tr>
+        <tr>
+            <th>나이</th>
+            <td>{{ student[2] }}</td>
+        </tr>
+        <tr>
+            <th>전공</th>
+            <td>{{ student[3] }}</td>
+        </tr>
+    </table>
+    <button onclick="window.close()">닫기</button>
+    <button onclick=""
+</body>
+</html>

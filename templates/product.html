@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 조회</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="./signup">회원가입</a> | <a href="./login">로그인</a>
+        </div>
+        <div class="gnbw">
+            <h1 class="logo">
+                <a href="./main" target="self">
+                    <img src="./static/img/gs25.png" alt="GS_logo" width="200px" height="80px">    
+                </a>
+            </h1>
+    
+        </div>
+        <h1>상품 정보</h1>
+    </header>
+
+
+    <nav>
+        <ul>
+            <li><a href="./product">상품 조회</a></li>
+            <li><a href="./promotion_product">행사상품 조회</a></li>
+            <li><a href="./save_promotion">행사상품 보관</a></li>
+            <li><a href="./cart">장바구니</a></li>
+            <li><a href="./mypage">마이페이지</a></li>
+        </ul>
+    </nav>
+
+    <div class="search-form">
+        <form action="/search_products" method="GET">
+            <input type="text" id="search" name="search" placeholder="상품을 입력하세요" required>
+            <button type="submit">검색</button>
+        </form>
+    </div>
+
+    <h2>검색 결과</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>상품ID</th>
+                <th>상품유형</th>
+                <th>상품 이름</th>
+                <th>상품 가격</th>
+                <th>수량</th>
+                <th>장바구니</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student[0] }}</td>
+                <td>{{ student[1] }}</td>
+                <td>
+                    <a href="#" onclick="openPopup({{ student[0] }})">{{ student[1] }}</a>
+                </td>
+                <td>{{ student[3] }}</td>
+                <td><input type="number" class="input-number" min="0" max="99" value="0"></td>
+                <td><button class="buy-item">담기</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    </table>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    
+
+    <footer>
+        <p>편의점 웹 서비스 | &copy; 2024</p>
+    </footer>
+    <script>
+        function openPopup(productID) {
+            const url = `/product_info/${productId}`;
+            const popupOptions = "width=600,height=400,scrollbars=yes";
+            window.open(url, "popupWindow", popupOptions);
+        }
+    </script>    
+</body>
+</html>
